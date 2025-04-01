@@ -4,14 +4,16 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.TouchSensor;
 
 
 //
 @TeleOp
 public class TestOpMode extends LinearOpMode {
-    public DcMotor slide = null;
+    private DcMotor slide = null;
     private TouchSensor slideLimit = null;
+    private Servo claw = null;
 
     public void initialize() {
         // TODO: Set up slide and slideLimit from hardwareMap
