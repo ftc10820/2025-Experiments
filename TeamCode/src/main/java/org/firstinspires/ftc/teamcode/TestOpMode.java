@@ -16,8 +16,9 @@ public class TestOpMode extends LinearOpMode {
     private Servo claw = null;
 
     public void initialize() {
-        // TODO: Set up slide and slideLimit from hardwareMap
-        // TODO: Configure slide settings
+        slide = hardwareMap.get(DcMotor.class, "slide");
+        //slideLimit = hardwareMap.get(TouchSensor.class, "slideLimit");
+        claw = hardwareMap.get(Servo.class, "claw");
     }
 
     public void runOpMode() throws InterruptedException {
@@ -30,15 +31,17 @@ public class TestOpMode extends LinearOpMode {
         // Loops until the game is done
         while (opModeIsActive()) {
             telemetry.addData("Slide", slide.getCurrentPosition());
-            telemetry.addData("Slide Limit Touched", slideLimit.isPressed());
+            //telemetry.addData("Slide Limit Touched", slideLimit.isPressed());
             telemetry.update();
 
-            if (gamepad2.dpad_up){
-//                slide.setPosition(slide.getPosition() + .003);
+            slide.setPower(-gamepad2.left_stick_y);
+            if (gamepad2.a){
+                claw.setPosition(0);
             }
-            else if (gamepad2.dpad_down) {
-//                slide.setPosition(slide.getPosition() - .003);
+            if (gamepad2.b){
+                claw.setPosition(1);
             }
+
         }
     }
 }
